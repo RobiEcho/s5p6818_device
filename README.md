@@ -6,7 +6,7 @@
 
 该项目为设备端，程序通过`MQTT`接收舵机转角数据，由舵机响应数据指令；同时通过摄像头采集图像数据，发送到穿戴端显示端显示，实现双端实时通讯。
 
-[穿戴端项目链接](https://github.com/firefullover/ESP32s3_Device)
+[穿戴端项目链接](https://github.com/RobiEcho/esp32s3_device)
 
 **联系方式**
 
