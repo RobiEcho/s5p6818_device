@@ -5,10 +5,11 @@
 #include <time.h>
 #include <signal.h>
 #include <string.h>
-#include <config/config.h>
-#include <camera/camera_test.h>
-#include <engine/engine.h>
-#include <mqtt/mqtt.h>
+
+#include "config.h"
+#include "camera_test.h"
+#include "engine.h"
+#include "mymqtt.h"
 
 // 全局上下文
 static mqtt_ctx g_mqtt_ctx;
