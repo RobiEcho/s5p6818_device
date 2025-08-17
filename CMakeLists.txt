@@ -24,7 +24,7 @@ include_directories(
 # 添加源文件
 set(SRC_FILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/main.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/camera_test.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/camera.c
     ${CMAKE_CURRENT_SOURCE_DIR}/src/engine.c
     ${CMAKE_CURRENT_SOURCE_DIR}/src/mymqtt.c
 )

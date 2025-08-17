@@ -41,7 +41,7 @@ void parse_json_and_control(const char *json_data) {
     }
 
     /**
-     * json_data 格式:
+     * json_data 新格式:
      * {
      *   "cmd_type": "angle_control",
      *   "angle_y": 45.0,
@@ -62,12 +62,12 @@ void parse_json_and_control(const char *json_data) {
         } else if (strcmp(cmd_type, "reset") == 0) {
             reset_engine();
         } else if (strcmp(cmd_type, "status") == 0) {
-            printf("当前舵机状态: Engine2=%.2f度, Engine3=%.2f度\n", eng2_deg, eng3_deg);
+            print_engine_angle();
         } else {
             printf("未知命令类型: %s\n", cmd_type);
         }
     } else {
-        // 向后兼容：如果没有命令类型，则按照旧格式处理
+        // 如果没有命令类型，则按照旧格式处理
         handle_angle_control(json_data);
     }
     cJSON_Delete(root);
@@ -91,7 +91,7 @@ void handle_angle_control(const char *json_data) {
             control_engine(Engine2, &eng2_deg, new_eng2_deg);
             changes++;
         } else {
-            printf("Y轴角度超出范围 [-90,90]: %.2f\n", new_eng2_deg);
+            printf("Y轴角度超出范围: %.1f\n", new_eng2_deg);
         }
     }
 
@@ -101,7 +101,7 @@ void handle_angle_control(const char *json_data) {
             control_engine(Engine3, &eng3_deg, new_eng3_deg);
             changes++;
         } else {
-            printf("Z轴角度超出范围 [-90,90]: %.2f\n", new_eng3_deg);
+            printf("Z轴角度超出范围: %.1f\n", new_eng3_deg);
         }
     }
 
@@ -113,10 +113,10 @@ void handle_angle_control(const char *json_data) {
 
 // 复位到初始角度
 void reset_engine() {
-    printf("开始复位舵机...\n");
+    // printf("开始复位舵机...\n");
     control_engine(Engine2, &eng2_deg, 90.0);
     control_engine(Engine3, &eng3_deg, 90.0);
-    printf("复位完成: 当前角度 eng2=%.1f, eng3=%.1f\n", eng2_deg, eng3_deg);
+    // printf("复位完成: 当前角度 eng2=%.1f, eng3=%.1f\n", eng2_deg, eng3_deg);
 }
 
 // 控制舵机核心逻辑
@@ -128,7 +128,7 @@ void control_engine(int command, double *angle, double new_angle) {
     int steps = (int)round(new_angle / DEG_UNIT);  // 使用更精确的round
     if (steps != 0) {
         // 构造ioctl参数
-        if (ioctl(engine_fd, steps, command) < 0) {  // 使用新命令
+        if (ioctl(engine_fd, steps, command) < 0) {
             perror("舵机控制失败");
         } else {
             *angle = new_angle;  // 更新角度

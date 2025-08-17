@@ -1,4 +1,4 @@
-#include "camera_test.h"
+#include "camera.h"
 #include <string.h>
 #include <unistd.h>
 #include <fcntl.h>

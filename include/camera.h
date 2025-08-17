@@ -1,5 +1,5 @@
-#ifndef CAMERA_TEST_H
-#define CAMERA_TEST_H
+#ifndef CAMERA_H
+#define CAMERA_H
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -33,4 +33,4 @@ void camera_deinit(void);
 // 从文件读取图像数据（测试函数）
 void get_image_data(unsigned char **buffer, long *size);
 
-#endif /* MYCAMERA_TEST_H */
+#endif /* MYCAMERA_H */

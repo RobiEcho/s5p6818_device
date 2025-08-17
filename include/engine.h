@@ -13,12 +13,6 @@
 extern double eng2_deg;
 extern double eng3_deg;
 
-// 定义舵机控制参数结构体
-// struct engine_angle {
-//     int command;  // 控制命令（Engine2/Engine3）
-//     int steps;    // 转动步数（基于DEG_UNIT计算）
-// };
-
 void handle_angle_control(const char *json_data);
 int engine_init();
 void print_engine_angle();
